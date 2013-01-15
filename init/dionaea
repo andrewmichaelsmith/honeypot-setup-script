@@ -1,1 +1,10 @@
-#todo
+### BEGIN INIT INFO
+# Provides:          dionaea
+# Required-Start:    p0f
+# Required-Stop:     p0f
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Dionaea Honeypot
+# Description:       Dionaea Honeypot
+#                    Catches Bugs
+### END INIT INFO
