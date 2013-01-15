@@ -19,7 +19,7 @@ Usage
 ---------------------
 Only run this if you have read this whole file and you **know what you are doing**.
 
-    wget -q -O -  https://github.com/andrewmichaelsmith/honeypot-setup-script/blob/master/setup.bash | bash
+    wget -q -O - https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/setup.bash | bash
 
 Notes
 ---------------------
