@@ -4,7 +4,8 @@
 sed -i 's:Port 22:Port 65534:g' /etc/ssh/sshd_config
 service ssh reload
 
-# setup p0f
+## install p0f ##
+
 sudo apt-get install -y p0f
 sudo mkdir /var/p0f/
 #launch p0f
@@ -33,9 +34,6 @@ sudo sed -i 's/log\//\/var\/dionaea\/log\//g' /etc/dionaea/dionaea.conf
 
 #enable p0f
 sudo sed -i 's://\s\s*"p0f",:"p0f",:g'  /etc/dionaea/dionaea.conf
-
-#launch dionaea
-sudo dionaea -c /etc/dionaea/dionaea.conf -w /var/dionaea -u nobody -g nogroup -D
 
 ## install kippo - we want the latest so we have to grab the source ##
 
@@ -83,4 +81,13 @@ sudo echo 'iptables-restore < /etc/iptables.rules' >> /etc/network/if-up.d/iptab
 sudo echo 'exit 0' >> /etc/network/if-up.d/iptablesload 
 #enable restore script
 sudo chmod +x /etc/network/if-up.d/iptablesload 
+
+#download init files and install them
+sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/init/p0f -o /etc/init.d/p0f
+sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/init/dionaea -o /etc/init.d/dionaea
+sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/init/kippo -o /etc/init.d/kippo
+
+sudo update-rc.d p0f defaults
+sudo update-rc.d dionaea defaults
+sudo update-rc.d kippo defaults
 
