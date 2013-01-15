@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Move SSH server from Port 22 to Port 66534
+sed -i 's:Port 22:Port 65534:g' /etc/ssh/sshd_config
+service ssh reload
+
 # dependency for add-apt-repository
 sudo apt-get install -y python-software-properties
 
