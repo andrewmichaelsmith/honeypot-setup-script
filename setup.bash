@@ -44,6 +44,15 @@ sudo useradd -r -s /bin/false kippo
 #set up permissions
 sudo chown -R kippo:kippo /opt/kippo/
 
+#set up log dirs
+sudo mkdir -p /var/kippo/dl
+sudo mkdir -p /var/kippo/log
+
+sudo chown -R kippo:kippo /var/kippo
+
+sed -i 's:log_path = log:log_path = /var/kippo/log:g' kippo.cfg
+sed -i 's:download_path = dl:download_path = /var/kippo/dl:g' kippo.cfg
+
 #start kippo
 sudo -u kippo sh start.sh
 
