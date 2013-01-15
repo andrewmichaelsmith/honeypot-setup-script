@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# dependency for add-apt-repository
+sudo apt-get install python-software-properties
+
 #add dionaea repo
 sudo add-apt-repository ppa:honeynet/nightly
 sudo apt-get update
