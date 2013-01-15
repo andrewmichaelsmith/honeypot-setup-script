@@ -1,1 +1,10 @@
-#todo
+### BEGIN INIT INFO
+# Provides:          kippo
+# Required-Start:    
+# Required-Stop:     
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Kippo Honeypot
+# Description:       Kippo Honeypot
+#                    SSH Honeypot
+### END INIT INFO
