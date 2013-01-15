@@ -50,31 +50,33 @@ sudo mv /opt/kippo/kippo.cfg.dist /opt/kippo/kippo.cfg
 #add kippo user that can't login
 sudo useradd -r -s /bin/false kippo
 
-#set up permissions
-sudo chown -R kippo:kippo /opt/kippo/
 
 #set up log dirs
 sudo mkdir -p /var/kippo/dl
 sudo mkdir -p /var/kippo/log
 
 #delete old dirs to prevent confusion
-rm -rf /opt/kippo/dl
-rm -rf /opt/kippo/log
+sudo rm -rf /opt/kippo/dl
+sudo rm -rf /opt/kippo/log
 
+sudo sed -i 's:log_path = log:log_path = /var/kippo/log:g' kippo.cfg
+sudo sed -i 's:download_path = dl:download_path = /var/kippo/dl:g' kippo.cfg
+
+
+#set up permissions
+sudo chown -R kippo:kippo /opt/kippo/
 sudo chown -R kippo:kippo /var/kippo
-
-sed -i 's:log_path = log:log_path = /var/kippo/log:g' kippo.cfg
-sed -i 's:download_path = dl:download_path = /var/kippo/dl:g' kippo.cfg
 
 #start kippo
 sudo -u kippo sh start.sh
 
 #point port 22 at port 2222 
 #we ommit -i here so it doesn't have to be configured. possible future improvement
-
 sudo iptables -t nat -A PREROUTING -p tcp --dport 22 -j REDIRECT --to-port 2222
+
 #persist iptables config
 sudo iptables-save > /etc/iptables.rules
+
 #setup iptables restore script
 sudo echo '#!/bin/sh' >> /etc/network/if-up.d/iptablesload 
 sudo echo 'iptables-restore < /etc/iptables.rules' >> /etc/network/if-up.d/iptablesload 
