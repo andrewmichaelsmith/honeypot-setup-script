@@ -48,6 +48,10 @@ sudo chown -R kippo:kippo /opt/kippo/
 sudo mkdir -p /var/kippo/dl
 sudo mkdir -p /var/kippo/log
 
+#delete old dirs to prevent confusion
+rm -rf /opt/kippo/dl
+rm -rf /opt/kippo/log
+
 sudo chown -R kippo:kippo /var/kippo
 
 sed -i 's:log_path = log:log_path = /var/kippo/log:g' kippo.cfg
