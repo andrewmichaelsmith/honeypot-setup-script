@@ -20,7 +20,7 @@ DAEMON=/usr/bin/dionaea
 # pid file for the daemon
 PIDFILE=/var/run/dionaea.pid
 
-PARAMETERS=-c /etc/dionaea/dionaea.conf -w /var/dionaea -u nobody -g nogroup -D -p $PIDFILE
+PARAMETERS="-c /etc/dionaea/dionaea.conf -w /var/dionaea -u nobody -g nogroup -D -p $PIDFILE"
 
 # If the daemon is not there, then exit.
 test -x $DAEMON || exit 5
