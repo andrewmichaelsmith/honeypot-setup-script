@@ -95,3 +95,7 @@ sudo update-rc.d p0f defaults
 sudo update-rc.d dionaea defaults
 sudo update-rc.d kippo defaults
 
+sudo /etc/init.d/kippo start
+sudo /etc/init.d/p0f start
+sudo /etc/init.d/dionaea start
+
