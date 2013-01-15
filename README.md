@@ -14,7 +14,7 @@ These will all be installed as system services so running this script once shoul
 
 Usage
 ---------------------
-wget -q -O - https://github.com/andrewmichaelsmith/honeypot-setup-script/blob/master/setup.bash | bash
+    wget -q -O - https://github.com/andrewmichaelsmith/honeypot-setup-script/blob/master/setup.bash | bash
 
 Notes
 ---------------------
