@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # dependency for add-apt-repository
-sudo apt-get install python-software-properties
+sudo apt-get install -y python-software-properties
 
 #add dionaea repo
 sudo add-apt-repository ppa:honeynet/nightly
 sudo apt-get update
-sudo apt-get install dionaea
+sudo apt-get install -y dionaea
 
 #make directories
 sudo mkdir -p /var/dionaea/wwwroot
