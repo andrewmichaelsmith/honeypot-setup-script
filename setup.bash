@@ -83,9 +83,9 @@ sudo echo 'exit 0' >> /etc/network/if-up.d/iptablesload
 sudo chmod +x /etc/network/if-up.d/iptablesload 
 
 #download init files and install them
-sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/init/p0f -o /etc/init.d/p0f
-sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/init/dionaea -o /etc/init.d/dionaea
-sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/init/kippo -o /etc/init.d/kippo
+sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/init/p0f -O /etc/init.d/p0f
+sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/init/dionaea -O /etc/init.d/dionaea
+sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/init/kippo -O /etc/init.d/kippo
 
 sudo chmod +x /etc/init.d/p0f
 sudo chmod +x /etc/init.d/dionaea
