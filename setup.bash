@@ -58,4 +58,5 @@ sudo -u kippo sh start.sh
 
 #point port 22 at port 2222 
 #we ommit -i here so it doesn't have to be configured. possible future improvement
+#TODO: This is not being persisted on startup.
 sudo iptables -t nat -A PREROUTING -p tcp --dport 22 -j REDIRECT --to-port 2222
