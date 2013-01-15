@@ -1,1 +1,10 @@
-#todo
+### BEGIN INIT INFO
+# Provides:          p0f
+# Required-Start:    
+# Required-Stop:     
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: p0f
+# Description:       p0f
+#                    Passive OS Fingerprinting
+### END INIT INFO
