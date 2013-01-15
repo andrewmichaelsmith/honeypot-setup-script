@@ -57,8 +57,8 @@ sudo mkdir -p /var/kippo/log
 sudo rm -rf /opt/kippo/dl
 sudo rm -rf /opt/kippo/log
 
-sudo sed -i 's:log_path = log:log_path = /var/kippo/log:g' kippo.cfg
-sudo sed -i 's:download_path = dl:download_path = /var/kippo/dl:g' kippo.cfg
+sudo sed -i 's:log_path = log:log_path = /var/kippo/log:g' /opt/kippo/kippo.cfg
+sudo sed -i 's:download_path = dl:download_path = /var/kippo/dl:g' /opt/kippo/kippo.cfg
 
 
 #set up permissions
