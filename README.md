@@ -17,6 +17,8 @@ These will all be installed as system services so running this script once shoul
 
 Usage
 ---------------------
+Only run this if you have read this whole file and you **know what you are doing**.
+
     wget -q -O -  https://github.com/andrewmichaelsmith/honeypot-setup-script/blob/master/setup.bash | bash
 
 Notes
