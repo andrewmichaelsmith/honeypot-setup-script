@@ -4,6 +4,12 @@
 sed -i 's:Port 22:Port 65534:g' /etc/ssh/sshd_config
 service ssh reload
 
+# setup p0f
+sudo apt-get install -y p0f
+sudo mkdir /var/p0f/
+#launch p0f
+sudo p0f -i any -u root -Q /tmp/p0f.sock -q -l -d -o /var/p0f/p0f.log
+
 # dependency for add-apt-repository
 sudo apt-get install -y python-software-properties
 
@@ -24,6 +30,9 @@ sudo chown -R nobody:nogroup /var/dionaea/
 sudo mv /etc/dionaea/dionaea.conf.dist /etc/dionaea/dionaea.conf
 sudo sed -i 's/var\/dionaea\///g' /etc/dionaea/dionaea.conf
 sudo sed -i 's/log\//\/var\/dionaea\/log\//g' /etc/dionaea/dionaea.conf
+
+#enable p0f
+sudo sed -i 's://\s\s*"p0f",:"p0f",:g'  /etc/dionaea/dionaea.conf
 
 #launch dionaea
 sudo dionaea -c /etc/dionaea/dionaea.conf -w /var/dionaea -u nobody -g nogroup -D
