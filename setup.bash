@@ -44,6 +44,9 @@ sudo useradd -r -s /bin/false kippo
 #set up permissions
 sudo chown -R kippo:kippo /opt/kippo/
 
+#start kippo
 sudo -u kippo sh start.sh
 
-sudo iptables -t nat -A PREROUTING -i IN_IFACE -p tcp --dport 22 -j REDIRECT --to-port 2222
+#point port 22 at port 2222 
+#we ommit -i here so it doesn't have to be configured. possible future improvement
+sudo iptables -t nat -A PREROUTING -p tcp --dport 22 -j REDIRECT --to-port 2222
