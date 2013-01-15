@@ -87,6 +87,10 @@ sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master
 sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/init/dionaea -o /etc/init.d/dionaea
 sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/init/kippo -o /etc/init.d/kippo
 
+sudo chmod +x /etc/init.d/p0f
+sudo chmod +x /etc/init.d/dionaea
+sudo chmod +x /etc/init.d/kippo
+
 sudo update-rc.d p0f defaults
 sudo update-rc.d dionaea defaults
 sudo update-rc.d kippo defaults
