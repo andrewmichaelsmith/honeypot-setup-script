@@ -4,6 +4,7 @@
 sed -i 's:Port 22:Port 65534:g' /etc/ssh/sshd_config
 service ssh reload
 
+# update apt repositories
 sudo apt-get update
 
 ## install p0f ##
@@ -63,7 +64,7 @@ sudo sed -i 's:download_path = dl:download_path = /var/kippo/dl:g' /opt/kippo/ki
 
 #set up permissions
 sudo chown -R kippo:kippo /opt/kippo/
-sudo chown -R kippo:kippo /var/kippo
+sudo chown -R kippo:kippo /var/kippo/
 
 #start kippo
 sudo -u kippo sh start.sh
@@ -87,6 +88,7 @@ sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master
 sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/init/dionaea -O /etc/init.d/dionaea
 sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/init/kippo -O /etc/init.d/kippo
 
+#install system services
 sudo chmod +x /etc/init.d/p0f
 sudo chmod +x /etc/init.d/dionaea
 sudo chmod +x /etc/init.d/kippo
@@ -95,6 +97,7 @@ sudo update-rc.d p0f defaults
 sudo update-rc.d dionaea defaults
 sudo update-rc.d kippo defaults
 
+#start the honeypot software
 sudo /etc/init.d/kippo start
 sudo /etc/init.d/p0f start
 sudo /etc/init.d/dionaea start
