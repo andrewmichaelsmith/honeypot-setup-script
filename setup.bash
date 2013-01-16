@@ -4,6 +4,8 @@
 sed -i 's:Port 22:Port 65534:g' /etc/ssh/sshd_config
 service ssh reload
 
+sudo apt-get update
+
 ## install p0f ##
 
 sudo apt-get install -y p0f
