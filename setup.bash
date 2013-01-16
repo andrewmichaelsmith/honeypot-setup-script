@@ -8,8 +8,6 @@ service ssh reload
 
 sudo apt-get install -y p0f
 sudo mkdir /var/p0f/
-#launch p0f
-sudo p0f -i any -u root -Q /tmp/p0f.sock -q -l -d -o /var/p0f/p0f.log
 
 # dependency for add-apt-repository
 sudo apt-get install -y python-software-properties
