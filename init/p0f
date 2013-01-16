@@ -20,7 +20,7 @@ DAEMON=/usr/sbin/p0f
 # pid file for the daemon
 PIDFILE=/var/run/p0f.pid
 
-PARAMETERS="-i any -u root -Q /tmp/p0f.sock -q -l -d -o /var/p0f/p0f.log"
+PARAMETERS="-u root -Q /tmp/p0f.sock -q -l -d -o /var/p0f/p0f.log"
 
 # If the daemon is not there, then exit.
 test -x $DAEMON || exit 5
