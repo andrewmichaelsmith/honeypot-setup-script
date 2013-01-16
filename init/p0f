@@ -1,6 +1,6 @@
 ### BEGIN INIT INFO
 # Provides:          p0f
-# Required-Start:    $network
+# Required-Start:    $all
 # Required-Stop:     
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
