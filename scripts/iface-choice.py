@@ -5,9 +5,11 @@ import netifaces
 def select_iface(iface):
     try:
         iface = int(iface)
+        if(iface < 0):
+            raise IndexError
         return netifaces.interfaces()[iface]
     except IndexError:
-        print "Number provided was to big or small"
+        print "Number provided was too big or small"
         return []
     except ValueError:
         print "Please enter an interface number"
