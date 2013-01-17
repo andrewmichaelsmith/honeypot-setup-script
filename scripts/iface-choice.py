@@ -3,7 +3,16 @@
 import netifaces
 
 def select_iface(iface):
-   return "eth0"
+    try:
+        iface = int(iface)
+        return netifaces.interfaces()[iface]
+    except IndexError:
+        print "Number provided was to big or small"
+        return []
+    except ValueError:
+        print "Please enter an interface number"
+        return []
+
 
 print "Please choose a network interface to run the honeypot on:\r\n"
 
@@ -17,9 +26,6 @@ print "\r\n"
 
 found = []
 while(not found):
-    found=select_iface(input('Chosen interface: '))
-
+    found=select_iface(raw_input('Chosen interface: '))
 
 print found
-
-
