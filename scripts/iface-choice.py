@@ -1,6 +1,7 @@
 #apt-get install python-pip
 #pip install netifaces
 import netifaces
+import os 
 
 def select_iface(iface):
     try:
