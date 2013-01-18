@@ -41,6 +41,7 @@ sudo mv /etc/dionaea/dionaea.conf.dist /etc/dionaea/dionaea.conf
 sudo sed -i 's/var\/dionaea\///g' /etc/dionaea/dionaea.conf
 sudo sed -i 's/log\//\/var\/dionaea\/log\//g' /etc/dionaea/dionaea.conf
 sudo sed -i 's:levels = "all":levels = "warning,error":g' /etc/dionaea/dionaea.conf
+sudo sed -i 's:eth0:$iface:g' /etc/dionaea/dionaea.conf
 
 #enable p0f
 sudo sed -i 's://\s\s*"p0f",:"p0f",:g'  /etc/dionaea/dionaea.conf
@@ -79,8 +80,8 @@ sudo chown -R kippo:kippo /var/kippo/
 sudo -u kippo sh start.sh
 
 #point port 22 at port 2222 
-#we ommit -i here so it doesn't have to be configured. possible future improvement
-sudo iptables -t nat -A PREROUTING -p tcp --dport 22 -j REDIRECT --to-port 2222
+
+sudo iptables -i $iface -t nat -A PREROUTING -p tcp --dport 22 -j REDIRECT --to-port 2222
 
 #persist iptables config
 sudo iptables-save > /etc/iptables.rules
