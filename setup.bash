@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# update apt repositories
+sudo apt-get update
+
 #user iface choice
 sudo apt-get -y install python-pip gcc python-dev
 sudo pip install netifaces
@@ -12,8 +15,6 @@ iface=$(<~/.honey_iface)
 sed -i 's:Port 22:Port 65534:g' /etc/ssh/sshd_config
 service ssh reload
 
-# update apt repositories
-sudo apt-get update
 
 ## install p0f ##
 
