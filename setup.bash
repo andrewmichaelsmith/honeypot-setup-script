@@ -58,6 +58,7 @@ sudo useradd -r -s /bin/false kippo
 #set up log dirs
 sudo mkdir -p /var/kippo/dl
 sudo mkdir -p /var/kippo/log/tty
+sudo mkdir -p /var/run/kippo
 
 #delete old dirs to prevent confusion
 sudo rm -rf /opt/kippo/dl
@@ -66,9 +67,7 @@ sudo rm -rf /opt/kippo/log
 #set up permissions
 sudo chown -R kippo:kippo /opt/kippo/
 sudo chown -R kippo:kippo /var/kippo/
-
-sudo touch /var/run/kippo.pid
-sudo chown kippo:kippo /var/run/kippo.pid 
+sudo chown -R kippo:kippo /var/run/kippo/
 
 #point port 22 at port 2222 
 #we should have -i $iface here but it was breaking things with virtual interfaces
