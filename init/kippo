@@ -17,7 +17,7 @@ NAME=kippo
 DAEMON=/usr/bin/twistd
 
 # pid file for the daemon
-PIDFILE=/var/run/kippo.pid
+PIDFILE=/var/run/kippo/kippo.pid
 
 CHUID=kippo
 
