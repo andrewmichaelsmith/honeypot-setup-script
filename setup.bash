@@ -38,7 +38,7 @@ sudo chown -R nobody:nogroup /var/dionaea/
 
 #edit config
 sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/templates/dionaea.conf.tmpl -O /etc/dionaea/dionaea.conf
-sudo sed -i "s:%%IFACE%%:$iface:g" /etc/dionaea/dionaea.conf
+sudo sed -i "s|%%IFACE%%|$iface|g" /etc/dionaea/dionaea.conf
 
 ## install kippo - we want the latest so we have to grab the source ##
 
@@ -81,7 +81,7 @@ sudo chmod +x /etc/network/if-up.d/iptablesload
 
 #download init files and install them
 sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/templates/p0f.init.tmpl -O /etc/init.d/p0f
-sudo sed -i "s:%%IFACE%%:$iface:g" /etc/init.d/p0f
+sudo sed -i "s|%%IFACE%%|$iface|g" /etc/init.d/p0f
 
 sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/init/dionaea -O /etc/init.d/dionaea
 sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/init/kippo -O /etc/init.d/kippo
