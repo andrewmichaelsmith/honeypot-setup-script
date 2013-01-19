@@ -41,7 +41,7 @@ sudo mv /etc/dionaea/dionaea.conf.dist /etc/dionaea/dionaea.conf
 sudo sed -i 's/var\/dionaea\///g' /etc/dionaea/dionaea.conf
 sudo sed -i 's/log\//\/var\/dionaea\/log\//g' /etc/dionaea/dionaea.conf
 sudo sed -i 's:levels = "all":levels = "warning,error":g' /etc/dionaea/dionaea.conf
-sudo sed -i 's:eth0:$iface:g' /etc/dionaea/dionaea.conf
+sudo sed -i "s:eth0:$iface:g" /etc/dionaea/dionaea.conf
 
 #enable p0f
 sudo sed -i 's://\s\s*"p0f",:"p0f",:g'  /etc/dionaea/dionaea.conf
