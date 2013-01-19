@@ -62,7 +62,7 @@ sudo useradd -r -s /bin/false kippo
 
 #set up log dirs
 sudo mkdir -p /var/kippo/dl
-sudo mkdir -p /var/kippo/log/tt
+sudo mkdir -p /var/kippo/log/tty
 
 #delete old dirs to prevent confusion
 sudo rm -rf /opt/kippo/dl
