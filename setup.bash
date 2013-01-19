@@ -68,7 +68,8 @@ sudo chown -R kippo:kippo /opt/kippo/
 sudo chown -R kippo:kippo /var/kippo/
 
 #point port 22 at port 2222 
-sudo iptables -i $iface -t nat -A PREROUTING -p tcp --dport 22 -j REDIRECT --to-port 2222
+#we should have -i $iface here but it was breaking things with virtual interfaces
+sudo iptables -t nat -A PREROUTING -p tcp --dport 22 -j REDIRECT --to-port 2222
 
 #persist iptables config
 sudo iptables-save > /etc/iptables.rules
