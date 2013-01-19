@@ -33,12 +33,12 @@ Effects
 
 Directory Structure
 ---------------------
+**Logging and Binaries**
+* Dionaea: `/var/dionaea/`
+* Kippo: `/var/kippo/`
+* p0f: `/var/p0f/`
 
-* Logging and Binaries
-    ** Dionaea: `/var/dionaea/`
-    ** Kippo: `/var/kippo/`
-    ** p0f: `/var/p0f/`
-* Configuration
-    ** Dionaea: /etc/dionaea
-    ** Kippo: /etc/kippo
+**Configuration**
+* Dionaea: /etc/dionaea
+* Kippo: /etc/kippo
 
