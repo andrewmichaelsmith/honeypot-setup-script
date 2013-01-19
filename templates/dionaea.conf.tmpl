@@ -1,14 +1,14 @@
 logging = {
 	default = {
 		// file not starting with / is taken relative to LOCALESTATEDIR (e.g. /opt/dionaea/var)
-		file = "log/dionaea.log"
-		levels = "all"
+		file = "/var/dionaea/log/dionaea.log"
+		levels = "warning,error"
 		domains = "*"
     }
 
 	errors = {
 		// file not starting with / is taken relative to LOCALESTATEDIR (e.g. /opt/dionaea/var)
-		file = "log/dionaea-errors.log"
+		file = "/var/dionaea/log/dionaea-errors.log"
 		levels = "warning,error"
 		domains = "*"
 	}
@@ -68,7 +68,7 @@ processors =
 		next = {
 			streamdumper = {
 				config = {
-					path = "var/dionaea/bistreams/%Y-%m-%d/"
+					path = "bistreams/%Y-%m-%d/"
 				}
 			}
 		}
@@ -90,7 +90,7 @@ processors =
 
 downloads =
 {
-	dir = "var/dionaea/binaries"
+	dir = "binaries"
 	tmp-suffix = ".tmp"
 }
 
@@ -98,7 +98,7 @@ bistreams =
 {
 	python = 
 	{
-		dir = "var/dionaea/bistreams"
+		dir = "bistreams"
 	}
 }
 
@@ -170,7 +170,7 @@ listen =
 	*/
 	     
 	mode = "getifaddrs"
-	addrs = { eth0 = ["::"] }
+	addrs = { %%IFACE%% = ["::"] }
 }
 
 modules = {
@@ -233,7 +233,7 @@ modules = {
 					"services",
 					"ihandlers"]
 		ftp = {
-			root = "var/dionaea/wwwroot"
+			root = "wwwroot"
 
 			/* ftp client section
 			 */
@@ -250,10 +250,10 @@ modules = {
 			active-host = "0.0.0.0"
 		}
 		tftp = {
-			root = "var/dionaea/wwwroot"
+			root = "wwwroot"
 		}
 		http = {
-			root = "var/dionaea/wwwroot"
+			root = "wwwroot"
 			max-request-size = "32768" // maximum size in kbytes of the request (32MB)
 		}
 		sip = {
@@ -266,7 +266,7 @@ modules = {
 			tls = {
 				port = "5061"
 			}
-			users = "var/dionaea/sipaccounts.sqlite"
+			users = "sipaccounts.sqlite"
 			rtp = {
 				enable = "yes"
 				/* how to dump the rtp stream
@@ -275,7 +275,7 @@ modules = {
 				mode = ["bistream", "pcap"]
 
 				pcap = {
-					path = "var/dionaea/rtp/{personality}/%Y-%m-%d/"
+					path = "rtp/{personality}/%Y-%m-%d/"
 					filename = "%H:%M:%S_{remote_host}_{remote_port}_in.pcap"
 				}
 			}
@@ -306,7 +306,7 @@ modules = {
 				play-hello = {
 					do = "play"
 					params = {
-						file = "var/dionaea/.../file.ext"
+						file = ".../file.ext"
 					}
 				}
 			}
@@ -321,7 +321,7 @@ modules = {
 		}
 		virustotal = {
 			apikey = "........." // grab it from your virustotal account at My account -> Inbox -> Public API
-			file = "var/dionaea/vtcache.sqlite"
+			file = "vtcache.sqlite"
 		}
 		mwserv = {			// ask your mwserv backend provider for needed values
 			url = "" 		// the url to send the submission requests to
@@ -353,7 +353,7 @@ modules = {
 		logsql = {
 			mode = "sqlite" // so far there is only sqlite
 			sqlite = {
-				file = "var/dionaea/logsql.sqlite"
+				file = "logsql.sqlite"
 			}
 		}
 		logxmpp = {
@@ -453,8 +453,8 @@ modules = {
 		}
 
 		fail2ban = {
-			downloads = "var/dionaea/downloads.f2b"
-			offers = "var/dionaea/offers.f2b"
+			downloads = "downloads.f2b"
+			offers = "offers.f2b"
 		}
 
 		ihandlers = {
@@ -465,7 +465,7 @@ modules = {
 //			"submit_http",
 //			"logxmpp",
 //			"nfq",
-//			"p0f",
+			"p0f",
 //			"surfids",
 //			"fail2ban"
 			]
