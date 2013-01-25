@@ -40,7 +40,8 @@ sudo chown -R nobody:nogroup /var/dionaea/
 
 #edit config
 sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/templates/dionaea.conf.tmpl -O /etc/dionaea/dionaea.conf
-sudo sed -i "s|%%IFACE%%|$iface|g" /etc/dionaea/dionaea.conf
+#note that we try and strip :0 and the like from interface here
+sudo sed -i "s|%%IFACE%%|${iface%:*}|g" /etc/dionaea/dionaea.conf
 
 ## install kippo - we want the latest so we have to grab the source ##
 
