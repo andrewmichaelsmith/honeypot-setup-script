@@ -35,6 +35,7 @@ sudo apt-get install -y dionaea
 sudo mkdir -p /var/dionaea/wwwroot
 sudo mkdir -p /var/dionaea/binaries
 sudo mkdir -p /var/dionaea/log
+sudo mkdir -p /var/dionaea/bistreams
 sudo chown -R nobody:nogroup /var/dionaea/
 
 #edit config
