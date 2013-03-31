@@ -33,7 +33,7 @@ Effects
 
 Directory Structure
 ---------------------
-**Logging and Binaries**
+**Logging**
 * Dionaea: `/var/dionaea/`
 * Kippo: `/var/kippo/`
 * p0f: `/var/p0f/`
@@ -41,4 +41,9 @@ Directory Structure
 **Configuration**
 * Dionaea: /etc/dionaea
 * Kippo: /etc/kippo
+
+**Binaries**
+* Dionaea: `/usr/bin/dionaea`
+* Kippo: `/opt/kippo`
+* p0f: `/usr/sbin/p0f`
 
