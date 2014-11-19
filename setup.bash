@@ -1,4 +1,23 @@
 #!/bin/bash
+script_dir="/honeypot-setup-script/"
+
+if [ -d "$script_dir" ];
+then
+	cp /honeypot-setup-script/scripts/iface-choice.py /tmp/iface-choice.py
+else
+	sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/scripts/iface-choice.py -O /tmp/iface-choice.py
+fi
+
+if [ -d "$script_dir" ];
+then
+	cp /honeypot-setup-script/templates/dionaea.conf.tmpl /etc/dionaea/dionaea.conf
+
+	mkdir /opt/kippo
+	cp /honeypot-setup-script/templates/kippo.cfg.tmpl /opt/kippo/kippo.cfg
+else
+	sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/templates/dionaea.conf.tmpl -O /etc/dionaea/dionaea.conf
+	sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/templates/kippo.cfg.tmpl -O /opt/kippo/kippo.cfg
+fi
 
 # update apt repositories
 sudo apt-get update
@@ -6,8 +25,9 @@ sudo apt-get update
 #user iface choice
 sudo apt-get -y install python-pip gcc python-dev
 sudo pip install netifaces
-sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/scripts/iface-choice.py -O /tmp/iface-choice.py
-python /tmp/iface-choice.py
+
+
+python /tmp/iface-choice.py "$@"
 iface=$(<~/.honey_iface)
 
 
@@ -39,7 +59,6 @@ sudo mkdir -p /var/dionaea/bistreams
 sudo chown -R nobody:nogroup /var/dionaea/
 
 #edit config
-sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/templates/dionaea.conf.tmpl -O /etc/dionaea/dionaea.conf
 #note that we try and strip :0 and the like from interface here
 sudo sed -i "s|%%IFACE%%|${iface%:*}|g" /etc/dionaea/dionaea.conf
 
@@ -51,8 +70,6 @@ sudo apt-get install -y subversion python-dev openssl python-openssl python-pyas
 #install kippo to /opt/kippo
 sudo mkdir /opt/kippo/
 sudo svn checkout http://kippo.googlecode.com/svn/trunk/ /opt/kippo/
-
-sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/templates/kippo.cfg.tmpl -O /opt/kippo/kippo.cfg
 
 #add kippo user that can't login
 sudo useradd -r -s /bin/false kippo
