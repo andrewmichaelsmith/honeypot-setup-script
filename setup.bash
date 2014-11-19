@@ -1,5 +1,21 @@
 #!/bin/bash
 
+if [ $(dpkg-query -W -f='${Status}' sudo 2>/dev/null | grep -c "ok installed") -eq 0 ]
+then
+  #sudo package is not currently installed on this box
+  echo '[Error] Please install sudo before contniuing (apt-get install sudo)'
+  exit 1
+fi
+
+current_suer=$(whoami)
+
+if [ $(sudo -n -l -U ${current_suer} 2>&1 | egrep -c -i "not allowed to run sudo|unknown user") -eq 1 ]
+then
+   echo '[Error]: You need to run this script under an account that has access to sudo'
+   exit 1
+fi
+
+
 # update apt repositories
 echo '[apt-get] Update on current repositories'
 sudo apt-get update &> /dev/null
