@@ -1,9 +1,11 @@
 #!/bin/bash
 
 # update apt repositories
+echo '[apt-get] Update on current repositories'
 sudo apt-get update &> /dev/null
 
 #user iface choice
+echo '[apt-get] Installing python-pip gcc python-dev'
 sudo apt-get -y install python-pip gcc python-dev &> /dev/null
 sudo pip install netifaces
 sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/scripts/iface-choice.py -O /tmp/iface-choice.py
@@ -17,17 +19,19 @@ sudo service ssh reload
 
 
 ## install p0f ##
-
+echo '[apt-get] Installing p0f'
 sudo apt-get install -y p0f  &> /dev/null
 sudo mkdir /var/p0f/
 
 # dependency for add-apt-repository
-sudo apt-get install -y python-software-properties
+echo '[apt-get] Installing python-software-properties'
+sudo apt-get install -y python-software-properties &> /dev/null
 
 ## install dionaea ##
 
 #add dionaea repo
 sudo add-apt-repository -y ppa:honeynet/nightly
+echo '[apt-get] Updating source list and installing dionaea-phibo'
 {
 sudo apt-get update 
 sudo apt-get install -y dionaea-phibo
@@ -48,6 +52,7 @@ sudo sed -i "s|%%IFACE%%|${iface%:*}|g" /etc/dionaea/dionaea.conf
 ## install kippo - we want the latest so we have to grab the source ##
 
 #kippo dependencies
+echo '[apt-get] Installing subversion python-dev openssl python-openssl python-pyasn1 python-twisted iptables'
 sudo apt-get install -y subversion python-dev openssl python-openssl python-pyasn1 python-twisted iptables &> /dev/null
 
 #install kippo to /opt/kippo
