@@ -7,9 +7,9 @@ then
   exit 1
 fi
 
-current_suer=$(whoami)
+current_user=$(whoami)
 
-if [ $(sudo -n -l -U ${current_suer} 2>&1 | egrep -c -i "not allowed to run sudo|unknown user") -eq 1 ]
+if [ $(sudo -n -l -U ${current_user} 2>&1 | egrep -c -i "not allowed to run sudo|unknown user") -eq 1 ]
 then
    echo '[Error]: You need to run this script under an account that has access to sudo'
    exit 1
