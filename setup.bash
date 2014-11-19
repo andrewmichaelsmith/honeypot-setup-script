@@ -69,7 +69,7 @@ sudo apt-get install -y subversion python-dev openssl python-openssl python-pyas
 
 #install kippo to /opt/kippo
 sudo mkdir /opt/kippo/
-sudo svn checkout http://kippo.googlecode.com/svn/trunk/ /opt/kippo/
+sudo git clone https://github.com/desaster/kippo.git /opt/kippo/
 
 #add kippo user that can't login
 sudo useradd -r -s /bin/false kippo
