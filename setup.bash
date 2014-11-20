@@ -13,14 +13,12 @@ then
 	mkdir /etc/dionaea
 	cp /honeypot-setup-script/templates/dionaea.conf.tmpl /etc/dionaea/dionaea.conf
 
-	mkdir /opt/kippo
-	cp /honeypot-setup-script/templates/kippo.cfg.tmpl /opt/kippo/kippo.cfg
+	cp /honeypot-setup-script/templates/kippo.cfg.tmpl /tmp/kippo.cfg
 else
-	mkdir /etc/dionaea
+	sudo mkdir /etc/dionaea
 	sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/templates/dionaea.conf.tmpl -O /etc/dionaea/dionaea.conf
 
-	mkdir /opt/kippo
-	sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/templates/kippo.cfg.tmpl -O /opt/kippo/kippo.cfg
+	sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/templates/kippo.cfg.tmpl -O /tmp/kippo.cfg
 fi
 
 if [ $(dpkg-query -W -f='${Status}' sudo 2>/dev/null | grep -c "ok installed") -eq 0 ]
@@ -101,6 +99,7 @@ sudo apt-get install -y subversion python-dev openssl python-openssl python-pyas
 #install kippo to /opt/kippo
 sudo mkdir /opt/kippo/
 sudo git clone https://github.com/desaster/kippo.git /opt/kippo/
+sudo cp /tmp/kippo.cfg /opt/kippo/
 
 #add kippo user that can't login
 sudo useradd -r -s /bin/false kippo
