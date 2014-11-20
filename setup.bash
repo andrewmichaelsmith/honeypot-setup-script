@@ -23,11 +23,30 @@ else
 	sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/templates/kippo.cfg.tmpl -O /opt/kippo/kippo.cfg
 fi
 
+if [ $(dpkg-query -W -f='${Status}' sudo 2>/dev/null | grep -c "ok installed") -eq 0 ]
+then
+  #sudo package is not currently installed on this box
+  echo '[Error] Please install sudo before contniuing (apt-get install sudo)'
+  exit 1
+fi
+
+current_user=$(whoami)
+
+if [ $(sudo -n -l -U ${current_user} 2>&1 | egrep -c -i "not allowed to run sudo|unknown user") -eq 1 ]
+then
+   echo '[Error]: You need to run this script under an account that has access to sudo'
+   exit 1
+fi
+
+
 # update apt repositories
-sudo apt-get update
+echo '[apt-get] Update on current repositories'
+sudo apt-get update &> /dev/null
 
 #user iface choice
-sudo apt-get -y install python-pip gcc python-dev
+echo '[apt-get] Installing python-pip gcc python-dev'
+sudo apt-get update &> /dev/null
+sudo apt-get -y install python-pip gcc python-dev &> /dev/null
 sudo pip install netifaces
 
 
@@ -41,19 +60,23 @@ sudo service ssh reload
 
 
 ## install p0f ##
-
-sudo apt-get install -y p0f
+echo '[apt-get] Installing p0f'
+sudo apt-get install -y p0f  &> /dev/null
 sudo mkdir /var/p0f/
 
 # dependency for add-apt-repository
-sudo apt-get install -y python-software-properties
+echo '[apt-get] Installing python-software-properties'
+sudo apt-get install -y python-software-properties &> /dev/null
 
 ## install dionaea ##
 
 #add dionaea repo
 sudo add-apt-repository -y ppa:honeynet/nightly
-sudo apt-get update
+echo '[apt-get] Updating source list and installing dionaea-phibo'
+{
+sudo apt-get update 
 sudo apt-get install -y dionaea-phibo
+} &> /dev/null
 
 #make directories
 sudo mkdir -p /var/dionaea/wwwroot
@@ -72,8 +95,12 @@ sudo sed -i "s|%%IFACE%%|${iface%:*}|g" /etc/dionaea/dionaea.conf
 sudo apt-get install -y subversion python-dev openssl python-openssl python-pyasn1 python-twisted iptables
 
 #install kippo to /opt/kippo
+echo '[apt-get] Installing subversion python-dev openssl python-openssl python-pyasn1 python-twisted iptables'
+sudo apt-get install -y subversion python-dev openssl python-openssl python-pyasn1 python-twisted iptables &> /dev/null
+
+#install kippo to /opt/kippo
 sudo mkdir /opt/kippo/
-sudo svn checkout http://kippo.googlecode.com/svn/trunk/ /opt/kippo/
+sudo git clone https://github.com/desaster/kippo.git /opt/kippo/
 
 #add kippo user that can't login
 sudo useradd -r -s /bin/false kippo
