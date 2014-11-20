@@ -10,12 +10,16 @@ fi
 
 if [ -d "$script_dir" ];
 then
+	mkdir /etc/dionaea
 	cp /honeypot-setup-script/templates/dionaea.conf.tmpl /etc/dionaea/dionaea.conf
 
 	mkdir /opt/kippo
 	cp /honeypot-setup-script/templates/kippo.cfg.tmpl /opt/kippo/kippo.cfg
 else
+	mkdir /etc/dionaea
 	sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/templates/dionaea.conf.tmpl -O /etc/dionaea/dionaea.conf
+
+	mkdir /opt/kippo
 	sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/templates/kippo.cfg.tmpl -O /opt/kippo/kippo.cfg
 fi
 
