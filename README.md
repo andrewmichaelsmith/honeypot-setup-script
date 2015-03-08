@@ -1,3 +1,7 @@
+Succeeded by [manuka](https://github.com/andrewmichaelsmith/manuka)
+
+
+
 honeypot-setup-script
 =====================
 
